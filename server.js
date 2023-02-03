@@ -1,7 +1,5 @@
-//let {Packer } =  require("docx");
-//let { saveAs } = require("file-saver");
+
 require('dotenv').config();
-//const tester = require('docx');
 let {Document} = require('docxyz');
 const {readFile} = require('fs');
 const fs = require('fs');
