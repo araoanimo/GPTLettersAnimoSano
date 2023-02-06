@@ -66,6 +66,10 @@ app.post('/postFile', upload.single('uploadedFile'), (req, res) => {
 
 
 app.post('/', async (req, res) => {
+  fs.writeFileSync('Letter_Template_Copy.docx', '', err => {
+    if(err) throw err;
+    console.log('file was cleared');
+  });
     const { message } = req.body;
     
     let promptHere = `${message} `;
