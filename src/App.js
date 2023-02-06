@@ -39,7 +39,7 @@ function App() {
     console.log(illness);
     console.log("hello world");
     prompt = `Construct a letter from ${docName} about ${reasonForLetter} regarding ${illness}
-  addressed to ${addressedTo} in a professional manner about a given patient named "Patient Name". Write the letter as though it will be sent 
+  addressed to ${addressedTo} in a professional manner about a given patient named "Patient". Write the letter as though it will be sent 
   as is outputted and is from the doctor.The letter should be about 200 words.`;
   console.log(prompt);
     fetch(`${API_URL}/`, {
@@ -89,21 +89,21 @@ function App() {
           <span>Addressed To</span>
           <textarea
           rows = {numRowsTextBox}
-          value = {reasonForLetter}
-          onChange = {(e) => setReasonForLetter(e.target.value)}
+          value = {addressedTo}
+          onChange = {(e) => setAddressedTo(e.target.value)}
           />
           <span>Reason for Letter</span>
           <textarea 
           rows = "5"
-          onChange = {(e) => setIllness(e.target.value)}
-          value = {illness}
+          onChange = {(e) => setReasonForLetter(e.target.value)}
+          value = {reasonForLetter}
           />
           <span>Illness</span>
           <form onSubmit={handleSubmit}>
           <textarea
             rows = "5"
-            value={addressedTo}
-            onChange={e => setAddressedTo(e.target.value)}
+            value={illness}
+            onChange={e => setIllness(e.target.value)}
           />
           <input 
             type="file"
