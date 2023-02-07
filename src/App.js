@@ -6,6 +6,7 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
+import { trackPromise} from 'react-promise-tracker'
 
 
 const FormData = require('form-data');
@@ -45,6 +46,8 @@ function App() {
   addressed to ${addressedTo} in a professional manner about a given patient. Write the letter as though it will be sent 
   as is outputted and is from the doctor.The letter should be about 200 words.`;
   console.log(prompt);
+
+  trackPromise(
     fetch(`${API_URL}/`, {
       method: 'POST',
       headers: {
@@ -57,7 +60,8 @@ function App() {
       .then(blob => {
         saveAs(blob, "Letter_Here.docx")
       })
-      .catch(err => console.error(err));
+      .catch(err => console.error(err))
+  );
   }
 
   const handleSubmitFile = (e) => {
