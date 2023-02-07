@@ -1,10 +1,14 @@
 
 import Header from './components/Header';
-import Form from './components/Form'; 
 import React, { useState } from 'react';
 import './App.css';
-import Footer from './components/Footer';
 import ReCAPTCHA from 'react-google-recaptcha';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import { trackPromise} from 'react-promise-tracker'
+
+
 const FormData = require('form-data');
 
 let { saveAs } = require("file-saver");
@@ -23,7 +27,7 @@ function App() {
   const [isVerifiedRecaptcha, setVerifiedRecaptcha] = useState(false);
 
   let prompt = `Construct a letter from ${docName} about ${reasonForLetter} regarding ${illness}
-  addressed to ${addressedTo} in a professional manner about a given patient named "Patient Name". Write the letter as though it will be sent 
+  addressed to ${addressedTo} in a professional manner about a given patient. Write the letter as though it will be sent 
   as is outputted and is from the doctor. The letter should be about 180 words.`;
   
 
@@ -39,9 +43,11 @@ function App() {
     console.log(illness);
     console.log("hello world");
     prompt = `Construct a letter from ${docName} about ${reasonForLetter} regarding ${illness}
-  addressed to ${addressedTo} in a professional manner about a given patient named "Patient". Write the letter as though it will be sent 
+  addressed to ${addressedTo} in a professional manner about a given patient. Write the letter as though it will be sent 
   as is outputted and is from the doctor.The letter should be about 200 words.`;
   console.log(prompt);
+
+  trackPromise(
     fetch(`${API_URL}/`, {
       method: 'POST',
       headers: {
@@ -54,7 +60,8 @@ function App() {
       .then(blob => {
         saveAs(blob, "Letter_Here.docx")
       })
-      .catch(err => console.error(err));
+      .catch(err => console.error(err))
+  );
   }
 
   const handleSubmitFile = (e) => {
@@ -79,45 +86,93 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <Box
+      component="form"
+      sx={{
+        '& .MuiTextField-root': { m: 2, width: '120%' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
       <div className = "container">
-      <span>Provider Name</span>
-        <textarea 
-          rows = {numRowsTextBox}
-          value = {docName}
+      <TextField
+          multiline
+          id="outlined"
+          label="Provider Name"
+          sx={{
+            color: 'success.main',
+            width: '40px',
+            display: 'inline-block'
+          }}
           onChange = {(e) => setDocName(e.target.value)}
-          />
-          <span>Addressed To</span>
-          <textarea
-          rows = {numRowsTextBox}
-          value = {addressedTo}
+        />
+        <TextField
+          multiline
+          id="outlined"
+          sx={{
+            color: 'success.main',
+            width: '30%',
+            display: 'inline-block'
+          }}
+          label="Addressed To"
           onChange = {(e) => setAddressedTo(e.target.value)}
-          />
-          <span>Reason for Letter</span>
-          <textarea 
-          rows = "5"
+        />
+        <TextField
+          multiline
+          id="outlined"
+          sx={{
+            color: 'success.main',
+            width: '30%',
+            display: 'inline-block'
+
+          }}
+          label="Reason for Letter"
+          rows={5}
           onChange = {(e) => setReasonForLetter(e.target.value)}
-          value = {reasonForLetter}
-          />
-          <span>Illness</span>
-          <form onSubmit={handleSubmit}>
-          <textarea
-            rows = "5"
-            value={illness}
-            onChange={e => setIllness(e.target.value)}
-          />
-          <input 
+        />
+        <TextField
+          multiline
+          optional="true"
+          sx={{
+            color: 'success.main',
+            width: '30%',
+            display: 'inline-block'
+          }}
+          id="outlined"
+          label="Illness"
+          onChange = {(e) => setIllness(e.target.value)}
+        />
+
+        {/* <Button variant="contained" component="label"
+        sx={{
+            margin: '16px',
+        }}>
+          Upload
+          
+          <input hidden accept=".docx" 
             type="file"
-            onChange = {(e) => handleSubmitFile(e)}
-          />
+            onChange =  {(e) => handleSubmitFile(e)}/>
+        </Button> */}
+      
           <ReCAPTCHA
-            align="left"
+          style={{
+            margin: '16px',
+          }}
             width="30"
             sitekey= {process.env.REACT_APP_RECAPTCHA_SITE_KEY}
             onChange={handleRecaptchaChange}
             />
-          <button disabled = {!isVerifiedRecaptcha} type="submit">Submit</button>
-        </form>
+            <Button
+            sx={{
+              margin: '16px',
+          }}
+            variant = "contained"
+            disabled = {!isVerifiedRecaptcha}
+            onClick = {handleSubmit}>
+              Submit
+            </Button>
       </div>
+      </Box>
       {/* <Footer/> */}
     </div>
    

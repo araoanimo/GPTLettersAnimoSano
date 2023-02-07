@@ -13,14 +13,14 @@ body{
   height: 40vmin;
   pointer-events: none;
 }
-form{
+/* form{
   align-items: left;
   justify-content: left;
   display: in-line block;
 
-}
+} */
 
-span{
+/* span{
   text-align: left;
   font-size: .9em;
   font-family: "Arial";
@@ -31,16 +31,16 @@ span{
   padding-top: 19px;
   
  
-}
+} */
 
 
-input{
+/* input{
   align-items: left;
   align-self: left;
   margin-left: 10px;
   display: block;
   padding: 3vh;
-}
+} */
 
 
 button{
@@ -59,16 +59,18 @@ button{
   font-size: .9em;
   font-weight: 600;
 }
-textarea{
+/* textarea{
   border-radius: 8px;
-  width: 30%;
+  text-align: left;
+  align-items: left;
+  width: 100%;
   border-color: #D1D1D1;
   border-width: 2px;
   font-family: "Arial";
   font-size: .9em;
   -webkit-font-smoothing: antialiased;
   background-color: rgb(255, 255, 255);
-}
+} */
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
