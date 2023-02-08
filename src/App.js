@@ -16,9 +16,12 @@ let { saveAs } = require("file-saver");
 
 
 function App() {
-  console.log(process.env.REACT_APP_API_URL);
+  
+  const API_URL = 'http://localhost:3001';
 
-  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+  if(process.env.NODE_ENV == 'production'){
+    API_URL = '';
+  }
   const numRowsTextBox = "3";
   const [docName, setDocName] = useState('');
   const [reasonForLetter, setReasonForLetter] = useState('');
@@ -58,6 +61,7 @@ function App() {
     Reason for Letter: ${reasonForLetter}
     Illness: ${illness}`;
   console.log(prompt);
+  console.log('API URL = ${API_URL}');
 
   trackPromise(
     fetch(`${API_URL}/`, {
