@@ -64,7 +64,7 @@ function App() {
   console.log(`API URL = ${API_URL}`);
 
   trackPromise(
-    fetch(`${API_URL}/`, {
+    fetch(`/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
