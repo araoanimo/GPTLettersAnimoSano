@@ -35,14 +35,15 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3001;
-
+console.log(process.env.PORT);
+console.log(process.env.NODE_ENV);
 app.use(bodyParser.json());
 app.use(cors());
 
 if (process.env.NODE_ENV === 'production'){
   // set static folder
   app.use(express.static('build'));
-
+  console.log('production mode');
   app.get('*', (req, res) =>{
       res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
   });
