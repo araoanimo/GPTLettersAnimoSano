@@ -19,7 +19,7 @@ function App() {
   
   const API_URL = 'http://localhost:3001';
 
-  if(process.env.NODE_ENV == 'production'){
+  if(process.env.NODE_ENV === 'production'){
     API_URL = '';
   }
   const numRowsTextBox = "3";
