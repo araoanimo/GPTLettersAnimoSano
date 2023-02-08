@@ -17,11 +17,11 @@ let { saveAs } = require("file-saver");
 
 function App() {
   
-  const API_URL = 'http://localhost:3001';
+  const API_URL = '/';
 
-  if(process.env.NODE_ENV === 'production'){
-    API_URL = '';
-  }
+  // if(process.env.NODE_ENV === 'production'){
+  //   API_URL = '';
+  // }
   const numRowsTextBox = "3";
   const [docName, setDocName] = useState('');
   const [reasonForLetter, setReasonForLetter] = useState('');
