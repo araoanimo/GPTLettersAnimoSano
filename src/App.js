@@ -61,7 +61,7 @@ function App() {
     Reason for Letter: ${reasonForLetter}
     Illness: ${illness}`;
   console.log(prompt);
-  console.log('API URL = ${API_URL}');
+  console.log(`API URL = ${API_URL}`);
 
   trackPromise(
     fetch(`${API_URL}/`, {
