@@ -64,7 +64,7 @@ function App() {
   console.log(`API URL = ${API_URL}`);
 
   trackPromise(
-    fetch(`/`, {
+    fetch('/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -87,7 +87,7 @@ function App() {
 
     const form = new FormData();
     form.append('uploadedFile', file);
-    fetch(`${API_URL}/postFile`, {
+    fetch('/postFile', {
       method: 'POST',
       body:form
     })
