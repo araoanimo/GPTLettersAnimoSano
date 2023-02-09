@@ -83,8 +83,7 @@ app.post('/', async (req, res) => {
         temperature: 0,
       });
     const ressy = (response && response.data && response.data.choices[0].text);
-    console.log(ressy);
-
+    
     let doc = new Document(fileName);
     doc.add_paragraph(ressy);
     doc.save(copyFile);
